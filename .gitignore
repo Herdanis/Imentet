@@ -1,0 +1,5 @@
+/nginx/log/*
+/nginx/default.conf
+/php/php.ini
+/app/*
+docker-compose.yml

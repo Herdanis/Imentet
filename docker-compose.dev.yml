@@ -1,0 +1,61 @@
+version: "3.7"
+
+networks:
+  local:
+
+volumes:
+  database:
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:stable
+    ports:
+      - 81:80
+    volumes:
+      - ./app:/var/www/html
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - local
+    depends_on:
+      - php
+      - mariadb
+  php:
+    image: herdanis/php8.1-fpm-laravel-composer:1.0
+    container_name: php
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - local
+    restart: unless-stopped
+  mariadb:
+    image: mariadb:10.7.4
+    container_name: mariadb
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - database:/var/lib/mariadb
+    command: --max_allowed_packet=32505856
+    environment:
+      MARIADB_DATABASE: docker
+      MARIADB_USER: docker
+      MARIADB_PASSWORD: 123
+      MARIADB_ROOT_PASSWORD: 123
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mariadb
+      TZ: Asia/Jakarta
+    networks:
+      - local
+  myadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 82:80
+    networks:
+      - local
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mariadb
+    depends_on:
+      - mariadb
