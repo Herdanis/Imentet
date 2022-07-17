@@ -40,7 +40,9 @@ Remove folder `.git` and every dev name in this repository
 ```
 example:
 devdocker-compose.dev.yml > docker-compose.yml
+
 ```
+or run `sh init.sh` if you in linux
 
 Change `PRIVATE_PORT` in docker-compose.yml to unused port
 
@@ -55,6 +57,12 @@ nginx:
 ## 🎈 Usage <a name="usage"></a>
 
 Use docker-compose to run Imentet `docker-compose up -d` , this composer create a volume to store all database you can use other volume too, after that open in your browser type `127.0.0.1` following port where to use `example 127.0.0.1:81`, after that you can see 403 Forbidden that mean your docker running well. If you want to use shell command in this docker compose type command `docker compose exec -it php /bin/bash` to see what inside the container. To stop the docker compose just type `docker compose down` after that all container in this docker compose will be stop.
+
+to run a php file:
+1. Make app directory
+2. Create index.php or index.html file inside app directory
+3. `docker compose down`
+4. `docker compose up`
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
