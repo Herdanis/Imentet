@@ -88,5 +88,6 @@ for PHP it use default `php.ini`
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@Herdanis](https://github.com/Herdanis) - Idea & Initial work
+- [@RyanB1303](https://github.com/RyanB1303) - Contributors
 
 See also the list of [contributors](https://github.com/Herdanis/Imentet/graphs/contributors) who participated in this project.
