@@ -35,7 +35,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - database:/var/lib
+      - database:/var/lib/mysql
     command: --max_allowed_packet=32505856
     environment:
       MARIADB_DATABASE: docker
